@@ -3,6 +3,7 @@ import keyboard
 import win32gui
 import snippetsToArray
 import pyperclip
+import time
 
 def run():
     activeWindowID = win32gui.GetForegroundWindow()
@@ -22,7 +23,6 @@ def run():
 
     # Set the initial selection to the first item
     listbox.selection_set(0)
-
     # Function to handle arrow key events
     def handle_arrow_keys(event):
         current_selection = listbox.curselection()
@@ -47,20 +47,24 @@ def run():
         window.iconify()
         # Set focus to the previously active window
         win32gui.SetForegroundWindow(activeWindowID)
-
         pyperclip.copy(selected_snippet().content)
         # Send Ctrl+V command
         keyboard.press_and_release('ctrl+v')
-        window.quit()
+        reset()
+        window.destroy()
 
     # Bind arrow keys and Enter key to the listbox
     listbox.bind("<Up>", handle_arrow_keys)
     listbox.bind("<Down>", handle_arrow_keys)
     listbox.bind("<Return>", handle_enter_key)
-
-    # Set focus to the listbox
+    window.focus_force()
     listbox.focus_set()
-
-    # Start the Tkinter event loop
+    # Set focus to the listbox
     window.mainloop()
 
+def reset():
+    activeWindowID = ''
+    snippets = ''
+    window = ''
+    listbox = ''
+    
