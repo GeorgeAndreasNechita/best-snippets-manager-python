@@ -1,4 +1,7 @@
 import tkinter as tk
+import keyboard
+import time
+import win32gui
 
 # Sample array of items
 items = [
@@ -43,7 +46,21 @@ def handle_arrow_keys(event):
 # Function to handle Enter key event
 def handle_enter_key(event):
     selected_item = listbox.get(listbox.curselection())
-    print("Selected item:", selected_item)
+    # Get the handle of the Tkinter window
+    tkinter_window_handle = window.winfo_id()
+
+    # Get the handle of the currently active window
+    active_window_handle = win32gui.GetForegroundWindow()
+
+    # Minimize the Tkinter window
+    window.iconify()
+
+    # Set focus to the previously active window
+    win32gui.SetForegroundWindow(active_window_handle)
+
+    # Send Ctrl+V command
+    keyboard.press_and_release('ctrl+v')
+    time.sleep(2)
 
 # Bind arrow keys and Enter key to the listbox
 listbox.bind("<Up>", handle_arrow_keys)
