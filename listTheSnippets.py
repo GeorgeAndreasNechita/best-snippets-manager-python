@@ -1,6 +1,6 @@
 import tkinter as tk
-import keyboard
 import time
+import keyboard
 import win32gui
 
 # Sample array of items
