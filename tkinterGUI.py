@@ -6,19 +6,19 @@ import snippetsToArray
 import pyperclip
 
 activeWindowID = win32gui.GetForegroundWindow()
-items = snippetsToArray.read_snippets_folder()
+snippets = snippetsToArray.read_snippets_folder()
 
 # Create the main window
 window = tk.Tk()
 window.title("Item Selector")
 
-# Create a listbox to display the items
-listbox = tk.Listbox(window, height=len(items))
+# Create a listbox to display the snippets
+listbox = tk.Listbox(window, height=len(snippets))
 listbox.pack()
 
-# Insert the items into the listbox
-for item in items:
-    listbox.insert(tk.END, item.title)
+# Insert the snippets into the listbox
+for item in snippets:
+    listbox.insert(tk.END, "Title:   " + item.title + "   Content:   " + item.content)
 
 # Set the initial selection to the first item
 listbox.selection_set(0)
@@ -31,9 +31,12 @@ def handle_arrow_keys(event):
             listbox.selection_clear(current_selection)
             listbox.selection_set(current_selection[0] - 1)
     elif event.keysym == "Down":
-        if current_selection[0] < len(items) - 1:
+        if current_selection[0] < len(snippets) - 1:
             listbox.selection_clear(current_selection)
             listbox.selection_set(current_selection[0] + 1)
+
+def selected_snippet():
+    return snippets[listbox.curselection()[0]]
 
 # Function to handle Enter key event
 def handle_enter_key(event):
@@ -44,7 +47,8 @@ def handle_enter_key(event):
     window.iconify()
     # Set focus to the previously active window
     win32gui.SetForegroundWindow(activeWindowID)
-    pyperclip.copy(1234)
+
+    pyperclip.copy(selected_snippet().content)
     # Send Ctrl+V command
     keyboard.press_and_release('ctrl+v')
     window.quit()
