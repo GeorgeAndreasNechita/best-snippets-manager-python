@@ -12,7 +12,7 @@ def run():
     # Create the main window
     window = tk.Tk()
     window.title("Item Selector")
-
+    window.geometry('400x300')
     # Create a listbox to display the snippets
     listbox = tk.Listbox(window, height=len(snippets))
     listbox.pack()
@@ -50,14 +50,16 @@ def run():
         pyperclip.copy(selected_snippet().content)
         # Send Ctrl+V command
         keyboard.press_and_release('ctrl+v')
-        reset()
-        window.destroy()
+        # reset()
+
 
     # Bind arrow keys and Enter key to the listbox
     listbox.bind("<Up>", handle_arrow_keys)
     listbox.bind("<Down>", handle_arrow_keys)
     listbox.bind("<Return>", handle_enter_key)
     window.focus_force()
+    window.attributes("-topmost", True)
+    window.grab_set()
     listbox.focus_set()
     # Set focus to the listbox
     window.mainloop()
