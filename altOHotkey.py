@@ -1,13 +1,14 @@
 from pynput import keyboard
+import win32gui
+import runFile
 
 def on_press(key):
     if key == keyboard.Key.alt_l:
         global alt_pressed
         alt_pressed = True
     elif hasattr(key, 'char') and key.char == 'o' and alt_pressed:
-        print('Performing action for Alt+O')
         # Add your desired action here
-
+        runFile.py_file("tkinterGUI.py")
 def on_release(key):
     global alt_pressed
     if key == keyboard.Key.alt_l:
