@@ -58,8 +58,11 @@ listbox.bind("<Up>", handle_arrow_keys)
 listbox.bind("<Down>", handle_arrow_keys)
 listbox.bind("<Return>", handle_enter_key)
 
-# Set focus to the listbox
-listbox.focus_set()
 
-# Start the Tkinter event loop
-window.mainloop()
+def run():
+    # Set focus to the listbox
+    listbox.focus_set()
+    # Start the Tkinter event loop
+    window.mainloop()
+
+run()
