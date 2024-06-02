@@ -34,6 +34,3 @@ def read_snippets_folder():
     else:
         print(f"The snippets folder '{snippets_folder}' does not exist.")
 
-
-# read_snippets_folder()
-print(read_snippets_folder())
