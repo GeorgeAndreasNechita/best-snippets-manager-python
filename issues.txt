@@ -1,3 +1,5 @@
 2. Window not becoming active
 1. Hotkey showing at wrong times when pressing o
 3. List of snippets adding to itself everytime the hotkey is used
+4. Add escape button for tkinter input
+
