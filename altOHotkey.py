@@ -1,6 +1,7 @@
 from pynput import keyboard
 import win32gui
 import runFile
+import tkinterGUI
 
 def on_press(key):
     if key == keyboard.Key.alt_l:
@@ -8,7 +9,8 @@ def on_press(key):
         alt_pressed = True
     elif hasattr(key, 'char') and key.char == 'o' and alt_pressed:
         # Add your desired action here
-        runFile.py_file("tkinterGUI.py")
+        # runFile.py_file("tkinterGUI.py")
+        tkinterGUI.run()
 def on_release(key):
     global alt_pressed
     if key == keyboard.Key.alt_l:
