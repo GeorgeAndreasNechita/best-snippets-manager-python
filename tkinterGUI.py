@@ -2,19 +2,11 @@ import tkinter as tk
 import time
 import keyboard
 import win32gui
+import snippetsToArray
 
-# Sample array of items
-items = [
-    "test.py best-snippets-manager-python",
-    "readTxts.py best-snippets-manager-python",
-    "starter.py Coding help project * python",
-    "class.py Coding help project * python",
-    "import os Untitled-1",
-    "snippet1 copy.txt best-snippets-manager-python * snippets",
-    "settings.json C:\\Users\\Andreas\\AppData\\Roaming\\Code\\User",
-    "altOHotkey.py best-snippets-manager-python",
-    "snippets.json Coding help project"
-]
+items = snippetsToArray.read_snippets_folder()
+# print(len(items))
+# exit()
 
 # Create the main window
 window = tk.Tk()
@@ -26,7 +18,7 @@ listbox.pack()
 
 # Insert the items into the listbox
 for item in items:
-    listbox.insert(tk.END, item)
+    listbox.insert(tk.END, item.title)
 
 # Set the initial selection to the first item
 listbox.selection_set(0)
