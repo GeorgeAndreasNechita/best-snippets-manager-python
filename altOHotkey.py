@@ -1,7 +1,6 @@
 from pynput import keyboard as pynputKeyboard
-import win32gui
-import runFile
 import tkinterGUI
+
 print('Ready to start using ALT+O Hotkey')
 
 def on_press(key):
