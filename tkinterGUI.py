@@ -54,12 +54,13 @@ def handle_enter_key(event):
     window.quit()
 
 # Bind arrow keys and Enter key to the listbox
-listbox.bind("<Up>", handle_arrow_keys)
-listbox.bind("<Down>", handle_arrow_keys)
-listbox.bind("<Return>", handle_enter_key)
 
 
 def run():
+    listbox.bind("<Up>", handle_arrow_keys)
+    listbox.bind("<Down>", handle_arrow_keys)
+    listbox.bind("<Return>", handle_enter_key)
+    
     # Set focus to the listbox
     listbox.focus_set()
     # Start the Tkinter event loop
