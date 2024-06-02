@@ -50,6 +50,7 @@ def run():
         pyperclip.copy(selected_snippet().content)
         # Send Ctrl+V command
         keyboard.press_and_release('ctrl+v')
+        window.destroy()
         # reset()
 
 
