@@ -7,10 +7,11 @@ def on_press(key):
     if key == pynputKeyboard.Key.alt_l:
         global alt_pressed
         alt_pressed = True
-    elif hasattr(key, 'char') and key.char == 'o' and alt_pressed:
-        # Add your desired action here
-        # runFile.py_file("tkinterGUI.py")
-        tkinterGUI.run()
+    elif hasattr(key, 'char') and key.char == 'o':
+        if alt_pressed:
+            # Add your desired action here
+            # runFile.py_file("tkinterGUI.py")
+            tkinterGUI.run()
 def on_release(key):
     global alt_pressed
     if key == pynputKeyboard.Key.alt_l:
