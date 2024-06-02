@@ -3,10 +3,10 @@ import time
 import keyboard
 import win32gui
 import snippetsToArray
+import pyperclip
 
+activeWindowID = win32gui.GetForegroundWindow()
 items = snippetsToArray.read_snippets_folder()
-# print(len(items))
-# exit()
 
 # Create the main window
 window = tk.Tk()
@@ -40,19 +40,14 @@ def handle_enter_key(event):
     selected_item = listbox.get(listbox.curselection())
     # Get the handle of the Tkinter window
     tkinter_window_handle = window.winfo_id()
-
-    # Get the handle of the currently active window
-    active_window_handle = win32gui.GetForegroundWindow()
-
     # Minimize the Tkinter window
     window.iconify()
-
     # Set focus to the previously active window
-    win32gui.SetForegroundWindow(active_window_handle)
-
+    win32gui.SetForegroundWindow(activeWindowID)
+    pyperclip.copy(1234)
     # Send Ctrl+V command
     keyboard.press_and_release('ctrl+v')
-    time.sleep(2)
+    window.quit()
 
 # Bind arrow keys and Enter key to the listbox
 listbox.bind("<Up>", handle_arrow_keys)
